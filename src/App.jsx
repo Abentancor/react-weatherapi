@@ -20,7 +20,7 @@ const App = () => {
     conditionText:"",
   })
 
-  const API_WEATHER = `http://api.weatherapi.com/v1/current.json?key=${import.meta.env.VITE_API_KEY}&lang=es&q=`;
+  const API_WEATHER = `https://api.weatherapi.com/v1/current.json?key=${import.meta.env.VITE_API_KEY}&lang=es&q=`;
 
   const onSubmit = async (e) => {
     e.preventDefault()
@@ -40,6 +40,7 @@ const App = () => {
     setWeather({
       city:data.location.name,
       country:data.location.country,
+      localTime:data.location.localtime,
       temp:data.current.temp_c,
       condition:data.current.condition.code,
       icon:data.current.condition.icon,
@@ -104,6 +105,12 @@ const App = () => {
               component="h2"
             >
               {weather.city} - {weather.country}
+            </Typography>
+            <Typography 
+              variant="h8"
+              component="h8"
+            >
+              {weather.localTime}
             </Typography>
             <Box
               component="img"
